@@ -1,5 +1,5 @@
 Assignment 1 - 10%
-Ciaran McNally - 58079978
+Ciaran McNally
 
 Design a Lexical Analyser for the ImpCA language.
 ------------------------------------------------
