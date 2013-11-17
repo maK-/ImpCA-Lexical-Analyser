@@ -1,0 +1,73 @@
+/- 
+--------------------------
+My Test File
+--------------------------
+This also uses elements of provided
+.imp files to test the parsing 
+capabilities of my lexical analyser.
+
+Please uncomment the blocks to test
+-/
+
+/-
+Provided example file
+--------------------
+
+real square (x:real)
+   return x * x;
+main
+   var x : integer;
+   var squ : real;
+
+   x := 1;
+   
+   while x <= 10 do
+   begin
+      squ := square (x);
+      !squ;
+   end
+
+This Successfully generated the following tokens:
+
+<REAL> <ID(square)> <LBR> <ID(x)> <COLON> <REAL> <RBR> 
+<RETURN> <ID(x)> <MUL> <ID(x)> <SEMIC> <MAIN> <VAR> <ID(x)> 
+<COLON> <INTEGER> <SEMIC> <VAR> <ID(squ)> <COLON> <REAL> 
+<SEMIC> <ID(x)> <ASSIGN> <INT(1)> <SEMIC> <WHILE> <ID(x)> 
+<LE> <INT(10)> <DO> <BEGIN> <ID(squ)> <ASSIGN> <ID(square)> 
+<LBR> <ID(x)> <RBR> <SEMIC> <EXCLAM> <ID(squ)> <SEMIC> <END> 
+<EOF>
+-/
+
+
+/-
+This is to test the String matching elements.
+---------------------------------------------
+var test := "This is a simple test string.";
+var test2 := "Not\\nas\\nsimple?";
+var test3 := "Get\\ready\\to\\break\"stuff\"";
+var test4 := "~`!@#$%^&*()_+=-0987654321qwerty{[]}\\':;.,<>?/\"\\n";
+
+This successfully generated the following tokens:
+<VAR> <ID(test)> <ASSIGN> <STRING("This is a simple test string.")> <SEMIC> 
+<VAR> <ID(test2)> <ASSIGN> <STRING("Not\\nas\\nsimple?")> <SEMIC> 
+<VAR> <ID(test3)> <ASSIGN> <STRING("Get\\ready\\to\\break\"stuff\"")> <SEMIC> 
+<VAR> <ID(test4)> <ASSIGN> <STRING("~`!@#$%^&*()_+=-0987654321qwerty{[]}\\':;.,<>?/\"\\n")> <SEMIC>
+<EOF>
+-/
+
+/-
+This is to test Integers, floating point numbers 
+and negative numbers.
+------------------------------------------------
+var no := 1.2 + -2.1
+var no2 := 0.1 - 333.333333
+var no3 := -34 + 34.347856
+var no4 := 23455 + -343545 + 1234.454 * -34.23
+
+This successfully parsed the following tokens:
+<VAR> <ID(no)> <ASSIGN> <REALNO(1.2)> <ADD> <REALNO(-2.1)> 
+<VAR> <ID(no2)> <ASSIGN> <REALNO(0.1)> <SUB> <REALNO(333.333333)> 
+<VAR> <ID(no3)> <ASSIGN> <INT(-34)> <ADD> <REALNO(34.347856)> 
+<VAR> <ID(no4)> <ASSIGN> <INT(23455)> <ADD> <INT(-343545)> <ADD> <REALNO(1234.454)> <MUL> <REALNO(-34.23)> 
+<EOF>
+-/

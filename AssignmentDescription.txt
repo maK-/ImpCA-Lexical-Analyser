@@ -1,0 +1,69 @@
+Assignment 1 - 10%
+Ciaran McNally - 58079978
+
+Design a Lexical Analyser for the ImpCA language.
+------------------------------------------------
+
+I have separated out the various components of my
+Lexical Analyser. Within the ImpCA_Lex.jj file I 
+outline how I tackled the various Token Regular 
+Expressions. These are all kept in homogeneous
+bunches. 
+(re. Numbers / Strings / Keywords / Identifiers
+and Symbols)
+
+I will give a brief outline of the above here.
+
+SKIP:
+All spaces, newline characters, tabs and return
+characters are skipped. I assigned a token for 
+space to be used later in the STRING token
+definition as I need to allow spaces in my strings.
+
+TOKENS:
+These will be parsed by our token parser and printed
+out in any easy to understand pattern.
+
+Keywords - I parsed the listed keywords in the 
+assignment specification. I also allowed TRUE and
+FALSE to instead be represented by the BOOLEAN
+Identifier. In parsing the keywords I made
+the assumption that the keywords themselves 
+would perform to definition.
+(re. 'and' keyword would parse to the token <AND>, 
+instead of equivalent boolean '&&' in java for example)
+
+Symbols - Next I parsed the operator symbols and
+other keyboard symbols. The majority of these symbols
+would only be used in String definitions. I think
+I've accounted for every symbol on my keyboard.
+
+Numbers - This should parse all numbers, real numbers
+and negative numbers. I added the negative numbers after
+realizing I left them out when testing. The only tricky thing
+here was getting the real number specified properly.
+The trick lied in the difference between + and * when it
+comes to regular expressions.
+
+Strings - This parses all Strings in the ImpCA language
+that start and end with double-quotes. I have accounted for
+all symbols, spaces and the need for escaping the following 
+\\ , \n, \"
+
+Identifiers - This parses words that begin with a char
+and contain any combination of chars,digits and underscores 
+afterwords. I also print the image of the token on output.
+
+
+Files submitted in this assignment:
+-----------------------------------
+AssignmentDescription.txt
+ImpCA_LexConstants.java
+ImpCA_Lex.java
+ImpCA_Lex.jj
+ImpCA_LexTokenManager.java
+JavaCharStream.java
+myTestFile.imp
+ParseException.java
+Token.java
+TokenMgrError.java
